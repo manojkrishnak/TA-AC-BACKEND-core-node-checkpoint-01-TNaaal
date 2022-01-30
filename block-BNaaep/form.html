@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./assets/stylesheet/style.css" rel="stylesheet">
+    <title>Contact</title>
+</head>
+
+<body>
+    <div class="container">
+        <form method="POST">
+            <fieldset>
+                <label for="name">Enter Name</label>
+                <input type="text" name="name" id="name">
+
+                <label for="email">Enter Email</label>
+                <input type="email" name="email" id="email">
+
+                <label for="username">Enter Username</label>
+                <input type="username" name="username" id="username">
+
+                <label for="age">Enter Age</label>
+                <input type="number" name="age" id="age">
+
+                <label for="bio">Enter Bio</label>
+                <textarea placeholder="Enter your Bio" id="bio" name="bio"></textarea>
+
+                <button class="submit">Submit</button>
+            </fieldset>
+    </div>
+    </form>
+    <script>
+        let submit = document.querySelector(".submit");
+        console.log(submit)
+        submit.addEventListener("click", function (e) {
+            e.preventDefault();
+            const name = document.querySelector("#name").value;
+            const email = document.querySelector("#email").value;
+            const username = document.querySelector("#username").value;
+            const age = document.querySelector("#age").value;
+            const bio = document.querySelector("#bio").value;
+
+            console.log(name, email, username, age, bio)
+
+            const xhrReq = new XMLHttpRequest();
+            xhrReq.open("POST", "/form");
+            xhrReq.setRequestHeader('Content-Type', 'application/json');
+            xhrReq.send(JSON.stringify({
+                name,
+                email, 
+                username, 
+                age, 
+                bio
+            }));
+
+        })
+    </script>
+</body>
+
+</html>
